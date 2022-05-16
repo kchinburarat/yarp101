@@ -1,0 +1,22 @@
+name: yarp101
+services:
+- name: gate
+  project: src/Gate/Gate.csproj
+  bindings:
+  - port: 5001
+    protocol: https
+  env:
+  - name: TyeStack
+    value: "true"
+
+- name: servicea
+  project: src/ServiceA/ServiceA.csproj
+  bindings:
+  - port: 5002
+    protocol: https
+
+- name: serviceb
+  project: src/ServiceB/ServiceB.csproj
+  bindings:
+  - port: 5003
+    protocol: https   

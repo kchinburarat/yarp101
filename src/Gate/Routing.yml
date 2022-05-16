@@ -1,0 +1,32 @@
+﻿ReverseProxy:
+  #### Routing rules ###
+  Routes:
+    servicea:
+      ClusterId: "servicea"  #cluster service name
+      Match:
+        Path: "/Index/{**catch-all}"
+
+    serviceb:
+      ClusterId: "serviceb"  #cluster service name
+      Match:
+        Path: "/Account/{**catch-all}"
+
+    service-assetb:
+      ClusterId: "serviceb"  #cluster service name
+      Match:
+        Path: "/ServiceB.styles.css"
+
+    service-asseta:
+      ClusterId: "serviceb" #cluster service name
+      Match:
+        Path: "{**catch-all}"
+  #### Service endpoints ####
+  Clusters:
+    servicea: # cluster service name
+      Destinations:
+        destination1:
+            Address: "https://localhost:5002/"
+    serviceb:  # cluster service name
+      Destinations:
+        destination1:
+            Address: "https://localhost:5003/"
